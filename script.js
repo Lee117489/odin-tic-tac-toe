@@ -25,7 +25,7 @@ const gameBoard = (() => {
     };
         
 
-    return {setCell, getCell, reset};
+    return {setCell, getCell, reset, board};
 
 })();
 
@@ -58,8 +58,13 @@ const displayController = (() => {
         messageElement.textContent = message;
     }
 
+    const setResultMessage = (winner) => {
+        if (winner == 'draw') setMessageElement(`It's a tie`);
+        else setMessageElement(`Player ${winner} wins!`);
+    }
 
-    return {setMessageElement};
+
+    return {setMessageElement, setResultMessage};
     
 
 })();
@@ -72,12 +77,30 @@ const gameController = (() => {
     let gameOver = false;
 
     const playRound = (cellNumber) => {
+        if (gameOver || gameBoard.getCell(cellNumber) !== '') return;
         gameBoard.setCell(cellNumber, getCurrentPlayerSign());
+        if (checkWinner(parseInt(cellNumber))) {
+            gameOver = true;
+            displayController.setResultMessage(getCurrentPlayerSign());
+            return;
+        }
+        if (round === 9) {
+            gameOver = true;
+            displayController.setResultMessage('draw');
+            return;
+        }
         round++;
         displayController.setMessageElement(`Player ${getCurrentPlayerSign()} turn`);
     };
 
     const getCurrentPlayerSign = () => round % 2 === 0 ? playerO.getSign() : playerX.getSign();
+
+    const checkWinner = (cellNumber) => {
+        const luckyNumbers = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+        return luckyNumbers
+            .filter((combination) => combination.includes(cellNumber))
+            .some((possibleCombination) => possibleCombination.every((index) => gameBoard.getCell(index) === getCurrentPlayerSign()));
+    };
 
     const reset = () => {
         round = 1;
