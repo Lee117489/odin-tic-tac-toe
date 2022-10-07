@@ -24,7 +24,6 @@ const gameBoard = (() => {
         };
     };
         
-
     return {setCell, getCell, reset, board};
 
 })();
@@ -56,17 +55,16 @@ const displayController = (() => {
 
     const setMessageElement = (message) => {
         messageElement.textContent = message;
-    }
+        messageElement.classList.add('fade-in');
+        messageElement.addEventListener('transitionend', () => messageElement.classList.remove('fade-in'));
+        };
 
     const setResultMessage = (winner) => {
         if (winner == 'draw') setMessageElement(`It's a tie`);
         else setMessageElement(`Player ${winner} wins!`);
-    }
-
+    };
 
     return {setMessageElement, setResultMessage};
-    
-
 })();
 
 

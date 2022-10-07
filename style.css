@@ -1,16 +1,25 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #66a3ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1 {
     text-align: center;
+    color: #e6f0ff;
+}
+
+.fade-in {
+    opacity: 0.3;
 }
 
 .message {
     text-align: center;
     font-size: 2rem;
     padding: 24px;
+    color: #e6f0ff; 
+    transition: all 0.3s ease-in-out;
 }
 
 .board {
@@ -18,7 +27,8 @@ h1 {
     margin: 0 auto;
     width: 300px;
     height: 300px;
-    background: black;
+    background: #e6f0ff;
+    border: 2px solid #e6f0ff;
     grid-gap: 2px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -29,7 +39,8 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    color: #0047b3;
+    background-color: #b3d1ff;
     font-size: 4rem;
 }
 
@@ -37,4 +48,18 @@ div.center {
     display: flex;
     justify-content: center;
     padding: 24px;
+}
+
+button#restart {
+    border: 2px solid #e6f0ff;
+    background-color: #b3d1ff;
+    color: #0047b3;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+}
+
+button#restart:hover {
+    background-color: #0047b3;
+    border: 2px solid #b3d1ff;
+    color: #e6f0ff;
 }
