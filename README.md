@@ -1,8 +1,11 @@
-# odin-tic-tac-toe
+# Tic-Tac-Toe
 
-Tic-Tac-Toe game
+Play against a friend. No AI yet.
 
-Built with
+## Built with
 - HTML
 - CSS
 - Javascript
+
+## Live demo
+- https://lee117489.github.io/odin-tic-tac-toe/
